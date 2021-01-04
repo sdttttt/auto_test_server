@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auto.test.dao.TAutoInterfaceDao">
+    <resultMap id="BaseResultMap" type="com.auto.test.entity.TAutoInterface">
+        <!--@mbg.generated-->
+        <!--@Table t_api-->
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="classify_id" jdbcType="BIGINT" property="classifyId"/> 
+        <result column="method" jdbcType="VARCHAR" property="method"/> 
+        <result column="domain" jdbcType="VARCHAR" property="domain"/>
+        <result column="path" jdbcType="LONGVARCHAR" property="path"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="remark" jdbcType="LONGVARCHAR" property="remark"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="req_header" jdbcType="LONGVARCHAR" property="reqHeader"
+                typeHandler="com.auto.test.common.handler.typehandler.HeaderListTypeHandler"/>
+        <result column="req_query" jdbcType="LONGVARCHAR" property="reqQuery"
+                typeHandler="com.auto.test.common.handler.typehandler.QueryListTypeHandler"/>
+        <result column="req_body_data" jdbcType="LONGVARCHAR" property="reqBodyData"
+                typeHandler="com.auto.test.common.handler.typehandler.BodyDataListTypeHandler"/>
+        <result column="req_body_json" jdbcType="LONGVARCHAR" property="reqBodyJson"/>
+        <result column="req_body_type" jdbcType="VARCHAR" property="reqBodyType"/>
+
+        <result column="req_assert" jdbcType="LONGVARCHAR" property="reqAssert"
+                typeHandler="com.auto.test.common.handler.typehandler.AssertListTypeHandler"/>
+        <result column="debug_rsp" jdbcType="VARCHAR" property="debugRsp"/>
+        <result column="create_by" jdbcType="VARCHAR" property="createBy"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`,   classify_id, `method`,   `domain`, `path`,
+        `type`, remark, `status`,   req_header, req_query, req_body_data, req_body_json,
+        req_body_type,   req_assert, debug_rsp, create_by, create_time, update_by,
+        update_time
+    </sql>
+    <select id="selectBySourceId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from t_auto_interface
+        where id = #{sourceId,jdbcType=BIGINT}
+    </select>
+</mapper>

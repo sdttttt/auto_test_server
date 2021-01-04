@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auto.test.dao.TAutoModuleDao">
+
+    <resultMap id="BaseResultMap" type="com.auto.test.entity.TAutoModule">
+        <!--@Table t_auto_module-->
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="moduleName" column="module_name" jdbcType="VARCHAR"/>
+        <result property="centerId" column="center_id" jdbcType="VARCHAR"/>
+        <result property="isvalid" column="isvalid" jdbcType="INTEGER"/>
+        <result property="loginInterface" column="login_interface" jdbcType="VARCHAR"/>
+        <result property="authenticationData" column="authentication_data" jdbcType="OTHER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, module_name, center_id, isvalid, login_interface, authentication_data
+        from auto_test.t_auto_module
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, module_name, center_id, isvalid, login_interface, authentication_data
+        from auto_test.t_auto_module
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, module_name, center_id, isvalid, login_interface, authentication_data
+        from auto_test.t_auto_module
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="moduleName != null and moduleName != ''">
+                and module_name = #{moduleName}
+            </if>
+            <if test="centerId != null and centerId != ''">
+                and center_id = #{centerId}
+            </if>
+            <if test="isvalid != null">
+                and isvalid = #{isvalid}
+            </if>
+            <if test="loginInterface != null and loginInterface != ''">
+                and login_interface = #{loginInterface}
+            </if>
+            <if test="authenticationData != null">
+                and authentication_data = #{authenticationData}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into auto_test.t_auto_module(module_name, center_id, isvalid, login_interface, authentication_data)
+        values (#{moduleName}, #{centerId}, #{isvalid}, #{loginInterface}, #{authenticationData})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update auto_test.t_auto_module
+        <set>
+            <if test="moduleName != null and moduleName != ''">
+                module_name = #{moduleName},
+            </if>
+            <if test="centerId != null and centerId != ''">
+                center_id = #{centerId},
+            </if>
+            <if test="isvalid != null">
+                isvalid = #{isvalid},
+            </if>
+            <if test="loginInterface != null and loginInterface != ''">
+                login_interface = #{loginInterface},
+            </if>
+            <if test="authenticationData != null">
+                authentication_data = #{authenticationData},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from auto_test.t_auto_module where id = #{id}
+    </delete>
+
+</mapper>

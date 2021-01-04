@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auto.test.dao.TAutoStepInterfaceDao">
+    <resultMap id="BaseResultMap" type="com.auto.test.model.dto.StepApiDto">
+        <!--@mbg.generated-->
+        <!--@Table t_step_api-->
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="type" jdbcType="INTEGER" property="type" />
+        <result column="source_id" jdbcType="BIGINT" property="sourceId" />
+        <result column="testcase_id" jdbcType="BIGINT" property="testcaseId" />
+         <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="method" jdbcType="VARCHAR" property="method" />
+        <result column="domain" jdbcType="VARCHAR" property="domain" />
+        <result column="path" jdbcType="VARCHAR" property="path" />
+        <result column="api_params" jdbcType="LONGVARCHAR" property="apiParams" typeHandler="com.auto.test.common.handler.typehandler.ApiParamListTypeHandler" />
+        <result column="req_header" jdbcType="LONGVARCHAR" property="reqHeader" typeHandler="com.auto.test.common.handler.typehandler.HeaderListTypeHandler" />
+        <result column="req_query" jdbcType="LONGVARCHAR" property="reqQuery" typeHandler="com.auto.test.common.handler.typehandler.QueryListTypeHandler" />
+        <result column="req_body_data" jdbcType="LONGVARCHAR" property="reqBodyData" typeHandler="com.auto.test.common.handler.typehandler.BodyDataListTypeHandler" />
+        <result column="req_body_json" jdbcType="LONGVARCHAR" property="reqBodyJson" />
+        <result column="req_body_type" jdbcType="VARCHAR" property="reqBodyType" />
+        <result column="req_assert" jdbcType="LONGVARCHAR" property="reqAssert" typeHandler="com.auto.test.common.handler.typehandler.AssertListTypeHandler" />
+        <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="sort" jdbcType="INTEGER" property="sort" />
+        <association property="api" column="source_id"
+                     select="com.auto.test.dao.TAutoInterfaceDao.selectBySourceId"></association>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`, `type`, testcase_id, source_id, `status`, `method`, `domain`, `path`,
+        api_params,  req_header, req_query, req_body_data, req_body_json, req_body_type, req_assert, create_by, create_time, update_by, update_time, sort
+    </sql>
+    <select id="findDtoByTestcaseId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_auto_step_interface
+        where testcase_id=#{testcaseId,jdbcType=BIGINT}
+        order by sort
+    </select>
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auto.test.dao.TAutoTestCaseInterfaceDao">
+
+    <resultMap id="BaseResultMap" type="com.auto.test.model.dto.TestcaseApiDto">
+        <!--@Table t_auto_testcase-->
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="VARCHAR"/>
+        <result property="moduleId" column="module_id" jdbcType="VARCHAR"/>
+        <result property="moduleName" column="module_name" jdbcType="VARCHAR"/>
+        <collection property="testSteps" column="id" ofType="com.auto.test.model.dto.StepApiDto"
+                    fetchType="eager" select="com.auto.test.dao.TAutoStepInterfaceDao.findDtoByTestcaseId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, `name`,  module_id,  status ,  module_name  , create_time, update_time
+    </sql>
+    <select id="selectDtoById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_auto_testcase
+        where id=#{id,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auto.test.dao.TAutoTokenDao">
+
+    <resultMap id="BaseResultMap" type="com.auto.test.entity.TAutoToken">
+        <!--@Table t_auto_token-->
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="val" column="val" jdbcType="LONGVARCHAR"/>
+        <result property="expireTime" column="expire_time" jdbcType="TIMESTAMP"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="BaseResultMap">
+        select
+          id, val, expire_time, create_time, update_time
+        from auto_test.t_auto_token
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="BaseResultMap">
+        select
+          id, val, expire_time, create_time, update_time
+        from auto_test.t_auto_token
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="BaseResultMap">
+        select
+          id, val, expire_time, create_time, update_time
+        from auto_test.t_auto_token
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="val != null and val != ''">
+                and val = #{val}
+            </if>
+            <if test="expiretime != null">
+                and expire_time = #{expiretime}
+            </if>
+            <if test="createtime != null">
+                and create_time = #{createtime}
+            </if>
+            <if test="updatetime != null">
+                and update_time = #{updatetime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into auto_test.t_auto_token(val, expire_time, create_time, update_time)
+        values (#{val}, #{expireTime}, #{createTime}, #{updateTime})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update auto_test.t_auto_token
+        <set>
+            <if test="val != null and val != ''">
+                val = #{val},
+            </if>
+            <if test="expiretime != null">
+                expire_time = #{expireTime},
+            </if>
+            <if test="createtime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updatetime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from auto_test.t_auto_token where id = #{id}
+    </delete>
+
+</mapper>
