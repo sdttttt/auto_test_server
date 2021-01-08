@@ -1,34 +1,23 @@
 package com.auto.test.controller;
 
-import com.auto.test.common.dto.ErrorInfo;
-import com.auto.test.common.dto.ResponseInfo;
-import com.auto.test.common.exception.ServiceException;
-import com.auto.test.entity.TAutoInterface;
 import com.auto.test.entity.TAutoStepInterface;
 import com.auto.test.entity.TAutoTestcase;
-import com.auto.test.model.bo.TApiResult;
 import com.auto.test.model.bo.base.JsonResult;
 import com.auto.test.model.bo.base.Page;
 import com.auto.test.model.dto.InterfaceClassifyParam;
 import com.auto.test.model.dto.TApiCaseResultDto;
 import com.auto.test.model.dto.TestcaseApiDto;
-import com.auto.test.model.po.ApiParam;
 import com.auto.test.service.TStepApiService;
 import com.auto.test.service.TestCaseInterfaceService;
-import com.auto.test.service.request.RequestExecutorServer;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * (TAutoInterface)表控制层

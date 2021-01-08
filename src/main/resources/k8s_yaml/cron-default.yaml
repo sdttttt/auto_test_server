@@ -1,0 +1,28 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cronjob-demo01
+  namespace: default
+spec:
+  schedule: "0 0 12 * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: cronjob
+              image: registry.cn-hangzhou.aliyuncs.com/litiewang/litiewang:20210106155544
+              command: ["java","-jar","-Dagentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005","-Dspring.profiles.active=prod","app.jar"]
+              args:
+                - "db16c7119f433e5511ae39b73861c0b8"
+                - "11819329357d9dbdcfd8630b4962e3a3"
+              env:
+                - name: MYSQL_SERVICE_HOST
+                  value: '192.168.1.122'
+                - name: MYSQL_SERVICE_PORT
+                  value: '3306'
+                - name: USER_NAME
+                  value: 'root'
+                - name: PASSWORD
+                  value: 'zea0i+6hx7Dp'

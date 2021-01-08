@@ -1,5 +1,6 @@
 package com.auto.test.service.common;
 
+import com.auto.test.entity.TAutoJob;
 import com.auto.test.k8s.dto.SearchParamDTO;
 import com.auto.test.k8s.model.Builder;
 import com.auto.test.k8s.model.Job;
@@ -54,6 +55,4 @@ public interface JobService {
   
   Boolean deleteJob(String nameSpace, String name);
   
-  Boolean createJob(String nameSpace, String name);
-  boolean checkCronExpressionIsValid(String cronExpression);
 }

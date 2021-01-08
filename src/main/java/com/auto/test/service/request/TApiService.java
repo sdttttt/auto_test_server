@@ -1,7 +1,7 @@
 package com.auto.test.service.request;
 
 import com.auto.test.entity.TAutoInterface;
-import com.auto.test.model.bo.TApiResult;
+import com.auto.test.entity.TApiResult;
 import com.auto.test.model.po.Action;
 import com.auto.test.model.po.ApiParam;
 import com.auto.test.model.po.Result;

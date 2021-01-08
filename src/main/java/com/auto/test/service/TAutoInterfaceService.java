@@ -14,6 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2020-12-21 15:50:39
  */
 public interface TAutoInterfaceService extends IService<TAutoInterface> {
-  Boolean swaggerImport(JSONObject jsonObject, String moduleId);
+  Boolean swaggerImport(String apiUrl, String moduleId);
   
 }

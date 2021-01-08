@@ -1,9 +1,10 @@
-package com.auto.test.model.bo;
+package com.auto.test.entity;
 
 import com.auto.test.model.po.AssertResult;
 import com.auto.test.model.po.BodyData;
 import com.auto.test.model.po.WebHeader;
 import com.auto.test.model.po.Query;
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -12,10 +13,13 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@TableName("t_auto_api_result")
 public class TApiResult implements Serializable {
+  private static final long serialVersionUID = 1L;
+  @TableId(type = IdType.ASSIGN_UUID)
   private String id;
   
-  private Long planLogId;
+  private String planLogId;
   
   /**
    * 用例结果id
@@ -108,8 +112,7 @@ public class TApiResult implements Serializable {
   private Long rspTime;
   
   private String exception;
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  @TableField(fill = FieldFill.INSERT)
   private Date createTime;
   
-  private static final long serialVersionUID = 1L;
 }

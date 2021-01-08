@@ -1,5 +1,9 @@
 package com.auto.test.myTest;
 
+import cn.hutool.cron.pattern.CronPattern;
+import io.github.swagger2markup.Swagger2MarkupConverter;
+import io.swagger.models.Swagger;
+import io.swagger.parser.SwaggerParser;
 import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -29,5 +33,13 @@ public class MockTest {
     Assert.assertEquals(result, "zuozewei");
     
   }
+  @Test
+  public void test2() {
+    // 创建Mock对象，参数可以是类或者接口
+    CronPattern cronPattern = new CronPattern("*/2 * * * * *");
+    CronPattern cronPattern2 = new CronPattern("* * * * * ? * f");
+    
+  }
+  
 }
 

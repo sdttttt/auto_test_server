@@ -79,7 +79,7 @@ public class K8sYamlDTO implements Serializable {
     }
   }
   
-  public K8sYamlDTO(JSONObject obj) {
+  public K8sYamlDTO(JSONObject obj,String metadataName) {
     
     if (obj != null) {
       
@@ -96,6 +96,7 @@ public class K8sYamlDTO implements Serializable {
         }
         if (K8sObject.METADATA.equals(name)) {
           V1ObjectMeta objMeta = obj.getObject(name, V1ObjectMeta.class);
+          objMeta.setName(metadataName);
           setMeta(objMeta);
         }
       }

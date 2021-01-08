@@ -1,9 +1,8 @@
 package com.auto.test.service.request.impl;
 
 import com.auto.test.entity.TAutoInterface;
-import com.auto.test.model.constant.DataSource;
 import io.restassured.http.Header;
-import com.auto.test.model.bo.TApiResult;
+import com.auto.test.entity.TApiResult;
 import com.auto.test.model.po.*;
 import com.auto.test.service.request.RequestExecutorServer;
 import com.auto.test.service.request.TApiService;

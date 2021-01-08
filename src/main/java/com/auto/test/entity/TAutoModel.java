@@ -1,5 +1,6 @@
 package com.auto.test.entity;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.handlers.FastjsonTypeHandler;
@@ -45,7 +46,7 @@ public class TAutoModel implements Serializable {
   public TAutoModel(Model model, String moduleId) {
     this.title = model.getTitle();
     this.description = model.getDescription();
-    JSONObject jsonObject1 = JSONObject.parseObject(model.toString());
+    JSONObject jsonObject1 =(JSONObject) JSON.toJSON(model);
     
     this.type = 1;
     this.model = jsonObject1;

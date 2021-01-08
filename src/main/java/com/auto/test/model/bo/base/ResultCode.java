@@ -22,6 +22,7 @@ public enum ResultCode implements IErrorCode {
   ENV_NOT_EXIST(410, "该环境不存在!"),
   QUERY_POD_FAIL(423, "查询pod失败"),
   GET_NAMESPACE_FAIL(438, "查询Namespace失败"),
+  QUERY_CRON_JOB_FAIL(416, "查询CronJob失败!"),
   K8S_CONFIG_ERROR(429, "请正确配置k8s证书"),
   GET_K8S_WEBSOCKET_CONNECT_FAIL(431, "获取k8s websocket连接失败!"),
   QUERY_JOB_FAIL(419, "查询job失败"),
