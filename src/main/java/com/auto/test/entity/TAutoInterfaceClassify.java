@@ -57,9 +57,9 @@ public class TAutoInterfaceClassify implements Serializable {
   
   public TAutoInterfaceClassify(String mapKey) {
     String[] classifyNames = mapKey.split("/");
-    String classifyName = mapKey;
-    if (classifyNames != null) {
-      classifyName = classifyNames[0] + "-" + classifyNames[1];
+    String classifyName = classifyNames[0];
+    if (classifyNames != null&&classifyNames.length>1) {
+      classifyName =  classifyName+ "-" + classifyNames[1];
     }
     this.name = classifyName;
   }

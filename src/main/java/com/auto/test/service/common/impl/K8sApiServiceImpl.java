@@ -6,7 +6,6 @@ import com.auto.test.dao.TAutoManageEnvDao;
 import com.auto.test.k8s.constant.K8sConstant;
 import com.auto.test.service.common.K8sApiService;
 import com.auto.test.utils.K8sManagement;
-import com.auto.test.utils.K8sUtils;
 import io.kubernetes.client.Discovery;
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.apis.*;
@@ -17,8 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.InputStream;
-import java.util.Collection;
-import java.util.List;
 
 @Service
 @Slf4j
@@ -31,7 +28,6 @@ public class K8sApiServiceImpl extends K8sManagement implements K8sApiService {
   @Autowired
   ApplicationConfig config;
   
-  private static String K8S_YAML_NAME = "k8s-default.yaml";
   private static String K8S_ERROR = "初始化k8s失败";
   
   @Override
@@ -272,7 +268,7 @@ public class K8sApiServiceImpl extends K8sManagement implements K8sApiService {
       k8sConfig = getK8sConfig(envId);
     } else {
       //如果没有默认数据,则读取默认的配置文件生成.
-      InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(K8S_YAML_NAME);
+      InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(K8sConstant.K8S_DEFAULT);
       k8sConfig = IoUtil.read(inputStream, "utf8");
       
     }

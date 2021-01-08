@@ -1,7 +1,7 @@
 package com.auto.test.service.request.impl;
 
 import com.auto.test.entity.TAutoInterface;
-import com.auto.test.model.bo.TApiResult;
+import com.auto.test.entity.TApiResult;
 import com.auto.test.model.po.Action;
 import com.auto.test.model.po.ApiParam;
 import com.auto.test.model.po.Result;
@@ -11,12 +11,9 @@ import com.auto.test.service.request.TApiService;
 import com.auto.test.utils.MyStringUtils;
 import com.auto.test.utils.apitest.ApiKeywords;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;

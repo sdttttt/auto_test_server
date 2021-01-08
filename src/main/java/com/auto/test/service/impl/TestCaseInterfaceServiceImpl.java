@@ -1,20 +1,16 @@
 package com.auto.test.service.impl;
 
-import com.auto.test.dao.TAutoInterfaceDao;
 import com.auto.test.dao.TAutoTestCaseInterfaceDao;
 import com.auto.test.entity.TAutoInterface;
 import com.auto.test.entity.TAutoTestcase;
-import com.auto.test.model.bo.TApiResult;
+import com.auto.test.entity.TApiResult;
 import com.auto.test.model.dto.StepApiDto;
 import com.auto.test.model.dto.TApiCaseResultDto;
 import com.auto.test.model.dto.TestcaseApiDto;
-import com.auto.test.model.po.CaseVar;
-import com.auto.test.service.TAutoInterfaceService;
 import com.auto.test.service.TStepApiService;
 import com.auto.test.service.TestCaseInterfaceService;
 import com.auto.test.service.request.TApiService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

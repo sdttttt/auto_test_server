@@ -2,11 +2,15 @@ package com.auto.test.controller.k8s;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.auto.test.common.exception.ServiceException;
+import com.auto.test.entity.TAutoInterface;
 import com.auto.test.model.bo.base.JsonResult;
 import com.auto.test.service.common.K8sApiService;
 import com.auto.test.service.common.K8sService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.kubernetes.client.Discovery;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -15,11 +19,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -46,10 +50,16 @@ public class ProbeController {
   
   @GetMapping("url")
   @ApiOperation("url测试")
+  
   public JsonResult<JSONObject> test(String url) {
     String result = k8sService.executeHttpGetBack(url);
     
     return JsonResult.success(JSON.parseObject(result));
   }
-  
+  @PostMapping("test-form")
+  @ApiImplicitParam(paramType="form")
+  public JsonResult<Boolean> saveOrUpdate(@RequestBody TAutoInterface classifyParam) {
+    
+    return JsonResult.success(true);
+  }
 }

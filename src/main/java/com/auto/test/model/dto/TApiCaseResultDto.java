@@ -1,7 +1,7 @@
 package com.auto.test.model.dto;
 
-import com.auto.test.model.bo.TApiCaseResult;
-import com.auto.test.model.bo.TApiResult;
+import com.auto.test.entity.TApiCaseResult;
+import com.auto.test.entity.TApiResult;
 import lombok.Data;
 
 import java.util.List;

@@ -1,19 +1,16 @@
 package com.auto.test.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.auto.test.common.dto.ErrorInfo;
 import com.auto.test.common.dto.ResponseInfo;
 import com.auto.test.common.exception.ServiceException;
 import com.auto.test.entity.TAutoInterface;
-import com.auto.test.model.bo.TApiResult;
+import com.auto.test.entity.TApiResult;
 import com.auto.test.model.bo.base.JsonResult;
 import com.auto.test.model.bo.base.Page;
 import com.auto.test.model.dto.InterfaceClassifyParam;
 import com.auto.test.model.po.ApiParam;
-import com.auto.test.service.TAutoInterfaceClassifyService;
 import com.auto.test.service.TAutoInterfaceService;
 import com.auto.test.service.request.RequestExecutorServer;
-import com.auto.test.utils.UserUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.annotations.Api;
@@ -115,8 +112,8 @@ public class InterfaceController {
   
   @PostMapping(value = "/swaggerImport/{{moduleId}}")
   @ApiOperation("批量导入接口")
-  public JsonResult<Boolean> swaggerImport(@RequestBody JSONObject jsonObject, @RequestParam("moduleId") String moduleId) {
+  public JsonResult<Boolean> swaggerImport( @RequestParam("moduleId") String moduleId,String apiUrl) {
     
-    return JsonResult.success(interfaceService.swaggerImport(jsonObject, moduleId));
+    return JsonResult.success(interfaceService.swaggerImport(apiUrl, moduleId));
   }
 }

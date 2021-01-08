@@ -1,5 +1,6 @@
 package com.auto.test.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.auto.test.dao.TAutoInterfaceClassifyDao;
 import com.auto.test.dao.TAutoInterfaceDao;
@@ -18,7 +19,10 @@ import io.swagger.models.parameters.AbstractSerializableParameter;
 import io.swagger.models.parameters.BodyParameter;
 import io.swagger.models.parameters.Parameter;
 import io.swagger.models.parameters.QueryParameter;
+import io.swagger.parser.SwaggerParser;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -41,11 +45,10 @@ public class TAutoInterfaceServiceImpl extends ServiceImpl<TAutoInterfaceDao, TA
   
   @Resource
   private TAutoModelService modelService;
-  
+  @Transactional
   @Override
-  public Boolean swaggerImport(JSONObject jsonObject, String moduleId) {
-    Swagger swagger = jsonObject.toJavaObject(Swagger.class);
-    
+  public Boolean swaggerImport(String apiUrl, String moduleId) {
+    Swagger swagger = new SwaggerParser().read(apiUrl);
     if (swagger != null) {
       Map<String, Path> paths = swagger.getPaths();
       if (!paths.isEmpty()) {
@@ -87,10 +90,13 @@ public class TAutoInterfaceServiceImpl extends ServiceImpl<TAutoInterfaceDao, TA
                 
                 for (Parameter parameter : parameters) {
                   String in = parameter.getIn();
-                  JSONObject jsonParameter = JSONObject.parseObject(parameter.toString());
+                 ;
+       JSONObject jsonParameter = JSONObject.parseObject( JSON.toJSONString(parameter)) ;
+                  //           JSONObject.parseObject(parameter.toString());
                   if ("body".equals(in)) {
                     autoInterface.setReqBodyType("raw");
-                    autoInterface.setReqBodyJson(jsonParameter.get("schema").toString());
+                   
+                    autoInterface.setReqBodyJson( JSON.toJSONString(jsonParameter.get("schema")));
                   } else if ("formData".equals(in)) {
                     autoInterface.setReqBodyType("form");
                     jsonParameter.remove("in");

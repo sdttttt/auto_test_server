@@ -24,24 +24,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @ConditionalOnProperty(name = "swagger.enable", havingValue = "true")
 public class SwaggerConfig {
-  //  @Bean
-//  public Docket createRestApi() {
-//    return new Docket(DocumentationType.OAS_30)
-//        .apiInfo(apiInfo())
-//        .select()
-//        .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-//        .paths(PathSelectors.any())
-//        .build();
-//  }
-//
-//  private ApiInfo apiInfo() {
-//    return new ApiInfoBuilder()
-//        .title("Swagger3接口文档")
-//        .description("更多请咨询服务开发者。")
-//        .contact(new Contact("", "http://www.ruiyeclub.cn", "2465915902@qq.com"))
-//        .version("1.0")
-//        .build();
-//  }
+  
   @Bean
   public Docket docket() {
     ParameterBuilder builder = new ParameterBuilder();//TokenFilter.TOKEN_KEY

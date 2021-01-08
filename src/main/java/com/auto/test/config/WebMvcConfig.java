@@ -1,6 +1,7 @@
 package com.auto.test.config;
 
 import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import io.cronitor.client.CronitorClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ResourceUtils;
@@ -31,8 +32,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
    */
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("/profile/**")
-        .addResourceLocations(ResourceUtils.FILE_URL_PREFIX + RabbitConfig.profile);
+   // registry.addResourceHandler("/profile/**")
+      //  .addResourceLocations(ResourceUtils.FILE_URL_PREFIX + RabbitConfig.profile);
     // 解决swagger无法访问
     
     registry.addResourceHandler("/swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
@@ -42,4 +43,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
   }
   
+  @Bean
+  public CronitorClient newCronitorClient(){
+    return new CronitorClient();
+  }
 }

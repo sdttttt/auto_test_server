@@ -1,5 +1,6 @@
-package com.auto.test.model.bo;
+package com.auto.test.entity;
 
+import com.baomidou.mybatisplus.annotation.*;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -7,7 +8,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
+@TableName("t_auto_testcase_api_result")
 public class TApiCaseResult implements Serializable {
+  @TableId(type = IdType.ASSIGN_UUID)
   private String id;
   
   private String planLogId;
@@ -58,7 +61,7 @@ public class TApiCaseResult implements Serializable {
   /**
    * createTime
    */
-  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
+  @TableField(fill = FieldFill.INSERT)
   private Date createTime;
   
   private static final long serialVersionUID = 1L;

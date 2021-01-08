@@ -23,12 +23,16 @@ public class Query implements Serializable {
     if (json.isEmpty()) {
       return null;
     }
-    for (Map.Entry<String, Object> entry : json.entrySet()) {
-      Query query = new Query();
-      query.setKey(entry.getKey());
-      query.setValue(entry.getValue());
-      queryList.add(query);
-    }
+//    for (Map.Entry<String, Object> entry : json.entrySet()) {
+//      Query query = new Query();
+//      query.setKey(entry.getKey());
+//      query.setValue(entry.getValue());
+//      queryList.add(query);
+//    }
+    Query query = new Query();
+    query.setKey("query");
+    query.setValue(json.toJSONString());
+    queryList.add(query);
     return queryList;
   }
   

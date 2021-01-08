@@ -24,8 +24,10 @@ public class TAutoJob implements Serializable {
     private String id;
     
     @ApiModelProperty(value = "任务名称", required = true)
-    private String jobName;
+    private String name;
     
+    @ApiModelProperty(value = "模块id", required = true)
+    private String moduleId;
     @ApiModelProperty(value = "任务执行表达式", required = true)
     private String cronExpression;
     
@@ -48,6 +50,5 @@ public class TAutoJob implements Serializable {
     @ApiModelProperty(value = "修改时间", hidden = true)
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
-
  
 }
